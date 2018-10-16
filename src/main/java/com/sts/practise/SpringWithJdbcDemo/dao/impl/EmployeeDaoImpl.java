@@ -15,21 +15,20 @@ import com.sts.practise.SpringWithJdbcDemo.models.EmployeeModel;
 
 public class EmployeeDaoImpl implements IEmployeeDao {
   
-	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplate;
+    
 	
 	
 	
 
-	public DataSource getDataSource() {
-		return dataSource;
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
 	}
 
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 	}
-	
+
 	public int createEmployee(EmployeeModel employeeModel) {
 	  final	String SQL = "INSERT INTO employee (firstname,lastname,username,email,password,salary,gender) VALUES(?,?,?,?,?,?,?)";
 		return jdbcTemplate.update(SQL,new Object[] {employeeModel.getFirstname(), employeeModel.getLastname() , employeeModel.getUsername() , employeeModel.getEmail(),employeeModel.getPassword(),
@@ -73,18 +72,23 @@ public class EmployeeDaoImpl implements IEmployeeDao {
 	}
 
 	public int deleteEmployeeById(EmployeeModel employeeModel) {
-		// TODO Auto-generated method stub
-		return 0;
+      final String SQL = "DELETE  FROM employee WHERE employee_id=?";
+      
+		return jdbcTemplate.update(SQL, new Object[] {employeeModel.getEmployeeId()});
 	}
 
-	public int updateEmployeeById(EmployeeModel employeeModel) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateEmployeeEmailById(EmployeeModel employeeModel) {
+		final String SQL="UPDATE employee set email=? WHERE employee_id=?";
+		
+		return jdbcTemplate.update(SQL, new Object[] {employeeModel.getEmail() , employeeModel.getEmployeeId()});
 	}
 
+	
 	public List<EmployeeModel> getAllEmployees() {
-		// TODO Auto-generated method stub
-		return null;
+		final String SQL = "SELECT * FROM employee";
+		
+		return jdbcTemplate.query(SQL, new EmployeeRawMapper());
+		
 	}
 
 }

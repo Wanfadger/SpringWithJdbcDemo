@@ -34,9 +34,9 @@ public void setiEmployeeDao(IEmployeeDao iEmployeeDao) {
 		return iEmployeeDao.deleteEmployeeById(employeeModel);
 	}
 
-	public int updateEmployeeById(EmployeeModel employeeModel) {
+	public int updateEmployeeEmailById(EmployeeModel employeeModel) {
 		// TODO Auto-generated method stub
-		return iEmployeeDao.updateEmployeeById(employeeModel);
+		return iEmployeeDao.updateEmployeeEmailById(employeeModel);
 	}
 
 	public List<EmployeeModel> getAllEmployees() {

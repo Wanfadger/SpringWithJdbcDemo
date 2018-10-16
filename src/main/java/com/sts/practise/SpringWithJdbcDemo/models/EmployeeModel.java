@@ -17,8 +17,16 @@ public class EmployeeModel {
 		this.employeeId = employeeId;
 	}
 
+	 
 
 
+
+
+	public EmployeeModel(int employeeId, String email) {
+		super();
+		this.employeeId = employeeId;
+		this.email = email;
+	}
 
 
 	public int getEmployeeId() {

@@ -8,6 +8,6 @@ public interface IEmployeeDao {
 public abstract int createEmployee(EmployeeModel employeeModel);
 public abstract EmployeeModel getEmployeeById(EmployeeModel employeeModel);
 public abstract int deleteEmployeeById(EmployeeModel employeeModel);
-public abstract int updateEmployeeById(EmployeeModel employeeModel);
+public abstract int updateEmployeeEmailById(EmployeeModel employeeModel);
 public abstract List<EmployeeModel> getAllEmployees();
 }
