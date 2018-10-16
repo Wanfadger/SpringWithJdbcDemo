@@ -19,16 +19,21 @@ public class App
         IEmployeeService  employee = context.getBean("employeeService" , EmployeeServiceImpl.class);
         
         EmployeeModel employeeModel = new EmployeeModel();
-        employeeModel.setEmail("Galiwango.fahad@gmail.com");
-        employeeModel.setFirstname("Galiwango");
-        employeeModel.setLastname("Fahad");
-        employeeModel.setPassword("123");
-        employeeModel.setGender("M");
-        employeeModel.setSalary(1000.00);
+        employeeModel.setEmail("Ga.fahd@gmail.com");
+        employeeModel.setUsername("wanfadger");
+        employeeModel.setFirstname("Gawango");
+        employeeModel.setLastname("Faad");
+        employeeModel.setPassword("1234");
+        employeeModel.setGender("F");
+        employeeModel.setSalary(106400.00);
         
         
         
-        employee.createEmployee(employeeModel);
+        if(employee.createEmployee(employeeModel)>0) {
+        System.out.println("successfully added");	
+        }else {
+        	System.out.println("failed");
+        }
         
         context.close();
     }

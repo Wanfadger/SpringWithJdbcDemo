@@ -8,53 +8,64 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import com.sts.practise.SpringWithJdbcDemo.IDaos.IEmployeeDao;
 import com.sts.practise.SpringWithJdbcDemo.models.EmployeeModel;
 
 public class EmployeeDaoImpl implements IEmployeeDao {
   
 	private DataSource dataSource;
+	private JdbcTemplate jdbcTemplate;
 	
 	
 	
+
 	public DataSource getDataSource() {
 		return dataSource;
 	}
 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
+	public int createEmployee(EmployeeModel employeeModel) {
+	  final	String SQL = "INSERT INTO employee (firstname,lastname,username,email,password,salary,gender) VALUES(?,?,?,?,?,?,?)";
+		return jdbcTemplate.update(SQL,new Object[] {employeeModel.getFirstname(), employeeModel.getLastname() , employeeModel.getUsername() , employeeModel.getEmail(),employeeModel.getPassword(),
+				employeeModel.getSalary() , employeeModel.getGender()});
 	}
 
-	public int createEmployee(EmployeeModel employeeModel) {
-		Connection connection = null;
-		PreparedStatement pStatement;
-		
-		try {
-			connection = dataSource.getConnection();
-			String sql = "INSERT INTO employee (firstname,lastname,username,email,password,salary,gender) VALUES(?,?,?,?,?,?,?)";
-			pStatement = connection.prepareStatement(sql);
-			//bind values
-			pStatement.setString(1, employeeModel.getFirstname());
-			pStatement.setString(2, employeeModel.getLastname());
-			pStatement.setString(3, employeeModel.getUsername());
-			pStatement.setString(4, employeeModel.getEmail());
-			pStatement.setString(5, employeeModel.getPassword());
-			pStatement.setString(7, employeeModel.getGender());
-			pStatement.setDouble(6, employeeModel.getSalary());
-	    int status = pStatement.executeUpdate();
-	    if(status>0) {
-	    	System.out.println("EmployeeDaoImpl.createEmployee() successfully added");
-	    }else {
-	    	System.out.println("failed");
-	    }
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		// TODO Auto-generated method stub
-		return 0;
-	}
+//	public int createEmployee(EmployeeModel employeeModel) {
+//		Connection connection = null;
+//		PreparedStatement pStatement;
+//		
+//		try {
+//			connection = dataSource.getConnection();
+//			String sql = "INSERT INTO employee (firstname,lastname,username,email,password,salary,gender) VALUES(?,?,?,?,?,?,?)";
+//			pStatement = connection.prepareStatement(sql);
+//			//bind values
+//			pStatement.setString(1, employeeModel.getFirstname());
+//			pStatement.setString(2, employeeModel.getLastname());
+//			pStatement.setString(3, employeeModel.getUsername());
+//			pStatement.setString(4, employeeModel.getEmail());
+//			pStatement.setString(5, employeeModel.getPassword());
+//			pStatement.setString(7, employeeModel.getGender());
+//			pStatement.setDouble(6, employeeModel.getSalary());
+//	    int status = pStatement.executeUpdate();
+//	    if(status>0) {
+//	    	System.out.println("EmployeeDaoImpl.createEmployee() successfully added");
+//	    }else {
+//	    	System.out.println("failed");
+//	    }
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
 
 	public EmployeeModel getEmployeeById(EmployeeModel employeeModel) {
 		// TODO Auto-generated method stub
