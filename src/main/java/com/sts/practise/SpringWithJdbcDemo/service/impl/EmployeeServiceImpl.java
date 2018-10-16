@@ -2,11 +2,16 @@ package com.sts.practise.SpringWithJdbcDemo.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.sts.practise.SpringWithJdbcDemo.IDaos.IEmployeeDao;
 import com.sts.practise.SpringWithJdbcDemo.IService.IEmployeeService;
 import com.sts.practise.SpringWithJdbcDemo.models.EmployeeModel;
 
+@Service("employeeService")
 public class EmployeeServiceImpl implements IEmployeeService {
+	@Autowired
 private IEmployeeDao iEmployeeDao;
 
 

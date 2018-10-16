@@ -8,13 +8,15 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.sts.practise.SpringWithJdbcDemo.IDaos.IEmployeeDao;
 import com.sts.practise.SpringWithJdbcDemo.models.EmployeeModel;
-
+@Repository
 public class EmployeeDaoImpl implements IEmployeeDao {
-  
+    @Autowired
 	private JdbcTemplate jdbcTemplate;
     
 	
