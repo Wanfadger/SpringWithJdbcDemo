@@ -27,14 +27,15 @@ public class App
         employeeModel.setGender("F");
         employeeModel.setSalary(106400.00);
         
+       EmployeeModel employeeModel2 = employee.getEmployeeById(new EmployeeModel(1)); 
+       System.out.println("fname "+employeeModel2.getFirstname() +" lastname "+employeeModel2.getLastname());
         
-        
-        if(employee.createEmployee(employeeModel)>0) {
-        System.out.println("successfully added");	
-        }else {
-        	System.out.println("failed");
-        }
-        
+//        if(employee.createEmployee(employeeModel)>0) {
+//        System.out.println("successfully added");	
+//        }else {
+//        	System.out.println("failed");
+//        }
+//        
         context.close();
     }
 }

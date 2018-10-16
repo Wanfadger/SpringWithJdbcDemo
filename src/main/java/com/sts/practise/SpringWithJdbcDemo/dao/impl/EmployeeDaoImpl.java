@@ -68,8 +68,8 @@ public class EmployeeDaoImpl implements IEmployeeDao {
 //	}
 
 	public EmployeeModel getEmployeeById(EmployeeModel employeeModel) {
-		// TODO Auto-generated method stub
-		return null;
+		final String SQL = "SELECT * FROM employee WHERE employee_id=?";
+		return jdbcTemplate.queryForObject(SQL, new EmployeeRawMapper(), employeeModel.getEmployeeId()) ;
 	}
 
 	public int deleteEmployeeById(EmployeeModel employeeModel) {

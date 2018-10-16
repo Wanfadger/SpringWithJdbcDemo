@@ -5,6 +5,22 @@ public class EmployeeModel {
 	private String firstname,lastname,username,email,password;
 	private String gender;
 	private Double salary;
+	
+	
+	public EmployeeModel() {
+		super();
+	}
+	
+	
+	public EmployeeModel(int employeeId) {
+		super();
+		this.employeeId = employeeId;
+	}
+
+
+
+
+
 	public int getEmployeeId() {
 		return employeeId;
 	}
